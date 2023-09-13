@@ -3,7 +3,7 @@ const props = defineProps({
   icon: {
     type: String,
     enum: ["place", "business", "show_chart"],
-    required: true,
+    required: false,
   },
   defaultOpened: {
     type: Boolean,

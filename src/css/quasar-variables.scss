@@ -1,12 +1,28 @@
 // FILE (create it): src/quasar-variables.sass
 
-$primary: #1976D2;
-$secondary: #26A69A;
-$accent: #9C27B0;
+$primary: #14aaff;
+$secondary: #26a69a;
+$accent: #9c27b0;
 
-$dark: #1D1D1D;
+$dark: #1d1d1d;
 
-$positive: #21BA45;
-$negative: #C10015;
-$info: #31CCEC;
-$warning: #F2C037;
+$positive: #21ba45;
+$negative: #c10015;
+$info: #31ccec;
+$warning: #f2c037;
+
+.mt-4 {
+  margin-top: 16px;
+}
+
+.-ml-4 {
+  margin-left: -16px;
+}
+
+.-mr-4 {
+  margin-right: -16px;
+}
+
+.-mb-4 {
+  margin-bottom: -16px;
+}

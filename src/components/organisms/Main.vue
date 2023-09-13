@@ -32,7 +32,7 @@ const chartOptions = ref({
       },
       track: {
         background: "#fff",
-        strokeWidth: "50%",
+        strokeWidth: "85%",
         margin: 0,
         dropShadow: {
           enabled: true,
