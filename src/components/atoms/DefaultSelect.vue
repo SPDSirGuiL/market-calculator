@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <q-input class="input-rounded" borderless rounded clearable />
+  <q-select multiple use-chips borderless rounded />
 </template>
 
 <style lang="scss" scoped>

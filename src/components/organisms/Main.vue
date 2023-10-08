@@ -2,6 +2,12 @@
 import { ref } from "vue";
 import { Title } from "../atoms";
 
+interface MainProps {
+  drawerOpened: boolean;
+}
+
+const props = defineProps<MainProps>();
+
 const chartOptions = ref({
   chart: {
     height: 350,
@@ -85,7 +91,7 @@ const series = ref(["75"]);
 </script>
 
 <template>
-  <main class="main-container">
+  <main :class="`main-container ${props.drawerOpened && 'no-scroll'}`">
     <Title>Comércio varejista de artigos do vestuário e acessórios</Title>
     <div id="card">
       <div id="chart">
@@ -103,5 +109,12 @@ const series = ref(["75"]);
 <style lang="scss" scoped>
 .main-container {
   padding-top: 40px;
+}
+
+.no-scroll {
+  max-height: calc(100vh - 36px);
+  max-width: 100vw;
+
+  overflow: hidden;
 }
 </style>
