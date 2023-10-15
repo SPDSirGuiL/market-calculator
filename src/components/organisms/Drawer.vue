@@ -2,6 +2,9 @@
 import { ref } from "vue";
 import { DrawerHeader, DrawerBody, Notification } from "../molecules";
 
+//@ts-ignore
+import { Geocoder } from "https://maps.googleapis.com/maps/api/js?key=AIzaSyBnIHgOkBve4rUNao-bvclXl1VDcCgT5zE";
+
 interface DrawerProps {
   open: boolean;
 }
@@ -13,6 +16,29 @@ const notification = ref(false);
 const openNotification = () => {
   notification.value = true;
 };
+
+const getUserLocale = async () => {
+  const position = navigator.geolocation.getCurrentPosition(
+    onSuccessGetUserLocale,
+    onFailedGetUserLocale
+  );
+};
+
+const onSuccessGetUserLocale = async (position: GeolocationPosition) => {
+  console.log(position.coords);
+
+  //@ts-ignore
+  const geocoder = new google.maps.Geocoder();
+  const address = await geocoder.geocode({
+    lat: position.coords.latitude,
+    lng: position.coords.longitude,
+  });
+
+  // Imprima o CEP.
+  console.log(address[0].postalCode);
+};
+
+const onFailedGetUserLocale = async () => {};
 </script>
 
 <template>
@@ -23,7 +49,7 @@ const openNotification = () => {
   </div>
 
   <q-dialog v-model="notification">
-    <Notification>
+    <Notification @yes="getUserLocale" @no="notification = false">
       Deseja importar sua localização? Ao importar sua localização, economizamos
       seu tempo para fazer a busca
     </Notification>

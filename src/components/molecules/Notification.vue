@@ -1,4 +1,14 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const emit = defineEmits(["yes", "no"]);
+
+const handleNoAction = () => {
+  emit("no");
+};
+
+const handleYesAction = () => {
+  emit("yes");
+};
+</script>
 
 <template>
   <div class="notification-card">
@@ -20,8 +30,8 @@
     </div>
 
     <div class="footer-notification">
-      <div class="primary-button">Não</div>
-      <div class="primary-button">Sim</div>
+      <div class="primary-button" @click="handleNoAction">Não</div>
+      <div class="primary-button" @click="handleYesAction">Sim</div>
     </div>
   </div>
 </template>
