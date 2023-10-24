@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { FilterMenu } from "./components/molecules";
-import { Header, Main, Drawer } from "./components/organisms";
+import { Header, Main, Drawer, Footer } from "./components/organisms";
 
 const enableFilterMenu = ref(false);
 
-const drawer = ref(true);
+const drawer = ref(false);
 
 const menuList = [
   {
@@ -62,11 +62,13 @@ const closeMenu = () => {
     <Header @openMenu="openMenu" />
     <Main :drawerOpened="drawer" />
   </q-layout>
+
+  <Footer />
 </template>
 
 <style lang="scss" scoped>
 .main-container {
-  height: 100vh;
+  height: calc(100vh - 94px);
 
   .main-drawer {
     width: 100vw;

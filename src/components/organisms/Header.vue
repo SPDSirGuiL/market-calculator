@@ -11,4 +11,11 @@ const emit = defineEmits(["openMenu"]);
   </header>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+header {
+  display: flex;
+  justify-content: flex-end;
+
+  padding: 28px;
+}
+</style>

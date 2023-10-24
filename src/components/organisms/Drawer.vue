@@ -59,7 +59,7 @@ const onFailedGetUserLocale = async () => {};
 <style lang="scss" scoped>
 .drawer-container {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
 
   position: absolute;
   top: 0;

@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import { DefaultInput, DefaultSelect } from "../atoms";
+import { CompanyBox, DefaultInput, DefaultSelect } from "../atoms";
+
+type companySizeType = "Grande" | "Médio" | "Pequeno";
 
 const emit = defineEmits(["openNotification"]);
 
 const group = ref(["op1"]);
+const companySize = ref<companySizeType>("Grande");
 
 const options = [
   {
@@ -24,6 +27,10 @@ const options = [
 const openNotification = () => {
   emit("openNotification");
 };
+
+const handleUpdateCompanySize = (size: companySizeType) => {
+  companySize.value = size;
+};
 </script>
 
 <template>
@@ -39,6 +46,7 @@ const openNotification = () => {
         class="checkboxes"
       />
     </div>
+
     <q-separator />
 
     <div class="locale">
@@ -58,6 +66,30 @@ const openNotification = () => {
         Detectar minha localização
       </span>
     </div>
+
+    <q-separator />
+
+    <section class="company-size">
+      <span class="title">Porte da empresa</span>
+
+      <div class="box-container">
+        <CompanyBox
+          :active="companySize == 'Grande'"
+          text="Grande"
+          @click="handleUpdateCompanySize('Grande')"
+        />
+        <CompanyBox
+          :active="companySize == 'Médio'"
+          text="Médio"
+          @click="handleUpdateCompanySize('Médio')"
+        />
+        <CompanyBox
+          :active="companySize == 'Pequeno'"
+          text="Pequeno"
+          @click="handleUpdateCompanySize('Pequeno')"
+        />
+      </div>
+    </section>
   </main>
 </template>
 
@@ -146,6 +178,33 @@ const openNotification = () => {
       .icon {
         font-size: 1.25rem;
       }
+    }
+  }
+
+  .company-size {
+    display: flex;
+    flex-direction: column;
+
+    padding: 20px;
+
+    .title {
+      color: #5f6a6c;
+      font-family: "Roboto";
+      font-size: 1.125rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+
+    .box-container {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 50px;
+
+      justify-content: space-around;
+
+      margin-top: 24px;
     }
   }
 }

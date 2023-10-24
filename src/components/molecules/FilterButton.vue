@@ -2,8 +2,8 @@
 
 <template>
   <q-btn flat no-caps rounded class="filter-btn" :ripple="false">
-    <q-icon name="o_tune" size="2rem" />
     <span> Filtros </span>
+    <q-icon name="o_filter_list" size="2.5rem" />
   </q-btn>
 </template>
 
@@ -13,8 +13,12 @@
   font-family: "Roboto";
 
   span {
-    font-size: 1.15rem;
-    margin-left: 10px;
+    margin-right: 10px;
+
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
   }
 }
 </style>

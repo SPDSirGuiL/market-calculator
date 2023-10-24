@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { Title } from "../atoms";
+import { DataBox } from "../molecules";
 
 interface MainProps {
   drawerOpened: boolean;
@@ -101,6 +102,16 @@ const series = ref(["75"]);
           :options="chartOptions"
           :series="series"
         ></apexchart>
+
+        <div class="data-container">
+          <span class="title">Aquecimento de mercado</span>
+
+          <div class="container">
+            <DataBox />
+            <DataBox />
+            <DataBox />
+          </div>
+        </div>
       </div>
     </div>
   </main>
@@ -109,6 +120,40 @@ const series = ref(["75"]);
 <style lang="scss" scoped>
 .main-container {
   padding-top: 40px;
+  padding: 20px;
+
+  .data-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border-radius: 16px;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
+
+    padding: 10px;
+
+    margin-top: -140px;
+
+    .title {
+      color: #5f6a6c;
+      text-align: center;
+      font-family: "Roboto";
+      font-size: 1.25rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+
+      margin-top: 115px;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+
+      margin: 70px 0 20px 0;
+      gap: 28px;
+    }
+  }
 }
 
 .no-scroll {
