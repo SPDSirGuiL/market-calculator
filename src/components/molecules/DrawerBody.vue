@@ -41,7 +41,6 @@ const handleUpdateCompanySize = (size: companySizeType) => {
       <q-option-group
         v-model="group"
         :options="options"
-        color="primary"
         type="checkbox"
         class="checkboxes"
       />
@@ -94,6 +93,12 @@ const handleUpdateCompanySize = (size: companySizeType) => {
 </template>
 
 <style lang="scss" scoped>
+.q-radio,
+.q-option-group,
+.q-checkbox {
+  color: #5f6a6c;
+}
+
 .main-drawer {
   .cnaes {
     display: flex;

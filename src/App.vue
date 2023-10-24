@@ -5,15 +5,23 @@ import { Header, Main, Drawer, Footer } from "./components/organisms";
 import { selectedTabType } from "./@types/tabsTypes";
 
 const drawer = ref(false);
+const drawerVisible = ref(false);
 
 const selectedTab = ref<selectedTabType>("heating");
 
 const openMenu = () => {
-  drawer.value = true;
+  drawerVisible.value = true;
+  setTimeout(() => {
+    drawer.value = true;
+  }, 100);
 };
 
 const closeDrawer = () => {
   drawer.value = false;
+
+  setTimeout(() => {
+    drawerVisible.value = false;
+  }, 500);
 };
 
 const updateTab = (tab: selectedTabType) => {
@@ -24,10 +32,10 @@ const updateTab = (tab: selectedTabType) => {
 <template>
   <q-layout container class="main-container">
     <Header @openMenu="openMenu" />
-    <Main :drawerOpened="drawer" />
+    <Main />
   </q-layout>
 
-  <Drawer :open="drawer" @closeDrawer="closeDrawer" />
+  <Drawer v-if="drawerVisible" :open="drawer" @closeDrawer="closeDrawer" />
 
   <Footer :selectedTab="selectedTab" @updateTab="updateTab" />
 </template>

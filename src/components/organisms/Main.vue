@@ -3,12 +3,6 @@ import { ref } from "vue";
 import { Title } from "../atoms";
 import { DataBox } from "../molecules";
 
-interface MainProps {
-  drawerOpened: boolean;
-}
-
-const props = defineProps<MainProps>();
-
 const chartOptions = ref({
   chart: {
     height: 350,
@@ -92,7 +86,7 @@ const series = ref(["75"]);
 </script>
 
 <template>
-  <main :class="`main-container ${props.drawerOpened && 'no-scroll'}`">
+  <main class="main-container">
     <Title>Comércio varejista de artigos do vestuário e acessórios</Title>
     <div id="card">
       <div id="chart">
@@ -132,6 +126,8 @@ const series = ref(["75"]);
     padding: 10px;
 
     margin-top: -140px;
+
+    margin-bottom: 40px;
 
     .title {
       color: #5f6a6c;
