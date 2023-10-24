@@ -11,6 +11,8 @@ interface DrawerProps {
 
 const props = defineProps<DrawerProps>();
 
+const emit = defineEmits(["closeDrawer"]);
+
 const notification = ref(false);
 
 const openNotification = () => {
@@ -39,11 +41,15 @@ const onSuccessGetUserLocale = async (position: GeolocationPosition) => {
 };
 
 const onFailedGetUserLocale = async () => {};
+
+const closeDrawer = () => {
+  emit("closeDrawer");
+};
 </script>
 
 <template>
-  <div :class="`drawer-container ${open ? 'opened' : 'closed'}`">
-    <DrawerHeader />
+  <div :class="`drawer-container ${props.open ? 'opened' : 'closed'}`">
+    <DrawerHeader @closeDrawer="closeDrawer" />
 
     <DrawerBody @openNotification="openNotification" />
   </div>

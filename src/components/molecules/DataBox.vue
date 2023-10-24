@@ -1,12 +1,33 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+interface DataBoxProps {
+  text: string;
+  percent: number;
+}
+
+const props = defineProps<DataBoxProps>();
+
+const formatNumber = (percent: number) => {
+  if (percent > 0) {
+    return `+ ${percent}%`;
+  }
+
+  const percentString = String(percent);
+  return `- ${percentString.replace("-", "")}%`;
+};
+</script>
 
 <template>
   <div class="box">
-    <span class="title">Crescimento de receita</span>
+    <span class="title">{{ props.text }}</span>
 
     <div class="percent-container">
-      <span class="percent">+ 12%</span>
-      <q-icon name="img:/up.svg" size="2rem" />
+      <span :class="`percent ${percent > 0 ? 'positive' : 'negative'}`">
+        {{ formatNumber(props.percent) }}
+      </span>
+      <q-icon
+        :name="percent > 0 ? 'img:/up.svg' : 'img:/down.svg'"
+        size="2rem"
+      />
     </div>
   </div>
 </template>
@@ -36,12 +57,21 @@
     margin-top: 14px;
 
     .percent {
-      color: #99ca3c;
       font-family: "Roboto";
       font-size: 2rem;
       font-style: normal;
       font-weight: 700;
       line-height: 2rem;
+
+      margin-right: 10px;
+
+      &.positive {
+        color: #99ca3c;
+      }
+
+      &.negative {
+        color: #f3705a;
+      }
     }
   }
 }

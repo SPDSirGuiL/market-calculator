@@ -107,9 +107,9 @@ const series = ref(["75"]);
           <span class="title">Aquecimento de mercado</span>
 
           <div class="container">
-            <DataBox />
-            <DataBox />
-            <DataBox />
+            <DataBox text="Crescimento de receita" :percent="12" />
+            <DataBox text="Empresas abertas x fechadas" :percent="-5" />
+            <DataBox text="Crescimento de lucro" :percent="35" />
           </div>
         </div>
       </div>
@@ -119,8 +119,7 @@ const series = ref(["75"]);
 
 <style lang="scss" scoped>
 .main-container {
-  padding-top: 40px;
-  padding: 20px;
+  padding: 40px 20px 0 20px;
 
   .data-container {
     display: flex;

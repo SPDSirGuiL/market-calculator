@@ -1,10 +1,16 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const emit = defineEmits(["closeDrawer"]);
+
+const closeDrawer = () => {
+  emit("closeDrawer");
+};
+</script>
 
 <template>
   <header class="drawer-header">
     <h1 class="title">Filtros</h1>
 
-    <q-btn round flat icon="close" class="icon" />
+    <q-btn round flat icon="close" class="icon" @click="closeDrawer" />
   </header>
 </template>
 

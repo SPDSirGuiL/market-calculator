@@ -1,19 +1,63 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { selectedTabType } from "../../@types/tabsTypes";
+
+interface FooterProps {
+  selectedTab: selectedTabType;
+}
+
+const props = defineProps<FooterProps>();
+
+const emit = defineEmits(["updateTab"]);
+
+const updateTab = (tab: selectedTabType) => {
+  emit("updateTab", tab);
+};
+</script>
 
 <template>
   <footer>
-    <div class="tab">
-      <q-icon />
+    <div
+      @click="updateTab('heating')"
+      :class="`tab ${props.selectedTab == 'heating' && 'heat'}`"
+    >
+      <q-icon
+        :name="
+          props.selectedTab == 'heating'
+            ? 'img:/heat.svg'
+            : 'img:/unselected-heat.svg'
+        "
+        size="2.5rem"
+      />
       <span>Aquecimento</span>
     </div>
 
-    <div class="tab">
-      <q-icon />
+    <div
+      @click="updateTab('charts')"
+      :class="`tab ${props.selectedTab == 'charts' && 'charts'}`"
+    >
+      <q-icon
+        :name="
+          props.selectedTab == 'charts'
+            ? 'img:/chart.svg'
+            : 'img:/unselected-chart.svg'
+        "
+        size="2.5rem"
+      />
       <span>Gráficos</span>
     </div>
 
-    <div class="tab">
-      <q-icon />
+    <div
+      @click="updateTab('ranking')"
+      :class="`tab ${props.selectedTab == 'ranking' && 'ranking'}`"
+    >
+      <q-icon
+        :name="
+          props.selectedTab == 'ranking'
+            ? 'img:/medal.svg'
+            : 'img:/unselected-medal.svg'
+        "
+        size="2.5rem"
+      />
       <span>Ranking</span>
     </div>
   </footer>
@@ -31,9 +75,25 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    color: #95a5a6;
+
+    &.heat {
+      color: #f3705a;
+    }
+
+    &.charts {
+      color: #99ca3c;
+    }
+
+    &.ranking {
+      color: #ffbf1e;
+    }
 
     span {
-      color: #f3705a;
       font-family: "Roboto";
       font-size: 0.75rem;
       font-style: normal;

@@ -2,68 +2,34 @@
 import { ref } from "vue";
 import { FilterMenu } from "./components/molecules";
 import { Header, Main, Drawer, Footer } from "./components/organisms";
-
-const enableFilterMenu = ref(false);
+import { selectedTabType } from "./@types/tabsTypes";
 
 const drawer = ref(false);
 
-const menuList = [
-  {
-    icon: "inbox",
-    label: "Inbox",
-    separator: true,
-  },
-  {
-    icon: "send",
-    label: "Outbox",
-    separator: false,
-  },
-  {
-    icon: "delete",
-    label: "Trash",
-    separator: false,
-  },
-  {
-    icon: "error",
-    label: "Spam",
-    separator: true,
-  },
-  {
-    icon: "settings",
-    label: "Settings",
-    separator: false,
-  },
-  {
-    icon: "feedback",
-    label: "Send Feedback",
-    separator: false,
-  },
-  {
-    icon: "help",
-    iconColor: "primary",
-    label: "Help",
-    separator: false,
-  },
-];
+const selectedTab = ref<selectedTabType>("heating");
 
 const openMenu = () => {
-  enableFilterMenu.value = true;
+  drawer.value = true;
 };
 
-const closeMenu = () => {
-  enableFilterMenu.value = false;
+const closeDrawer = () => {
+  drawer.value = false;
+};
+
+const updateTab = (tab: selectedTabType) => {
+  selectedTab.value = tab;
 };
 </script>
 
 <template>
   <q-layout container class="main-container">
-    <Drawer :open="drawer" />
-
     <Header @openMenu="openMenu" />
     <Main :drawerOpened="drawer" />
   </q-layout>
 
-  <Footer />
+  <Drawer :open="drawer" @closeDrawer="closeDrawer" />
+
+  <Footer :selectedTab="selectedTab" @updateTab="updateTab" />
 </template>
 
 <style lang="scss" scoped>
